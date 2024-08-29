@@ -1,0 +1,146 @@
+model Maker {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId String @unique @map("user_id")
+
+  makerType                  MakerType          @map("maker_type")
+  plan                       PlanType
+  profileUrl                 String?            @map("profile_url")
+  name                       String
+  residentRegistrationNumber String?            @map("resident_registration_number")
+  businessName               String             @map("business_name")
+  businessNumber             String?            @map("business_number")
+  phoneNumber                String             @map("phone_number")
+  email                      String
+  slug                       String             @unique
+  status                     MakerRequestStatus @default(PENDING)
+
+  bankAccount        MakerBankAccount?
+  popularMaker       PopularMaker?
+  socialIds          MakerSocialId[]
+  files              MakerFile[]
+  products           Product[]
+  calculationRecords MakerCalculationRecord[]
+  editRequests       ProductEditRequest[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("maker")
+}
+
+model MakerSocialId {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  makerId String @map("maker_id")
+
+  type      SocialNetworkType
+  socialId  String            @map("social_id")
+  isPrimary Boolean           @default(false) @map("is_primary")
+
+  maker Maker @relation(fields: [makerId], references: [id], onDelete: Cascade)
+
+  @@map("maker_social_id")
+}
+
+model MakerFile {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  makerId String @map("maker_id")
+
+  fileName String        @map("file_name")
+  fileUrl  String        @map("file_url")
+  type     MakerFileType
+
+  maker Maker @relation(fields: [makerId], references: [id], onDelete: Cascade)
+
+  @@map("maker_file")
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  makerId    String @map("maker_id")
+  categoryId Int    @map("category_id")
+
+  thumbnailUrl  String   @map("thumbnail_url")
+  title         String
+  description   String
+  productImages String[] @map("product_images")
+  tags          String[]
+
+  representativePrice Int           @default(0) @map("representative_price")
+  status              ProductStatus @default(PENDING)
+
+  recommendedProduct RecommendedProduct?
+  options            ProductOption[]
+  reviews            ProductReview[]
+  likes              ProductLike[]
+  editRequests       ProductEditRequest[]
+
+  maker           Maker           @relation(fields: [makerId], references: [id], onDelete: Cascade)
+  productCategory ProductCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("product")
+}
+
+model ProductOption {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  prouductId String @map("product_id")
+
+  thumbnailUrl String @map("thumbnail_url")
+  title        String
+  description  String
+  price        Int
+  stock        Int
+
+  productOrderItems ProductOrderItem[]
+  shoppingCartItems ShoppingCartItem[]
+
+  product Product @relation(fields: [prouductId], references: [id], onDelete: Cascade)
+
+  @@map("product_option")
+}
+
+model ProductEditRequest {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  productId String @map("product_id")
+  makerId   String @map("maker_id")
+
+  isReflected Boolean @default(false) @map("is_reflected")
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+  maker   Maker   @relation(fields: [makerId], references: [id], onDelete: Cascade)
+
+  @@map("product_edit_request")
+}
+
+model MakerBankAccount {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  makerId String @unique @map("maker_id")
+
+  bankCode      String @map("bank_code")
+  bankName      String @map("bank_name")
+  accountNumber String @map("account_number")
+  accountHolder String @map("account_holder")
+
+  maker Maker @relation(fields: [makerId], references: [id], onDelete: Cascade)
+
+  @@map("maker_bank_account")
+}

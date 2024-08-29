@@ -1,0 +1,236 @@
+model User {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  name                String
+  image               String
+  email               String    @unique
+  emailVerified       DateTime? @map("email_verified")
+  phoneNumber         String?   @map("phone_number")
+  isEmailSubscribed   Boolean   @default(false) @map("is_email_subscribed")
+  isMessageSubscribed Boolean   @default(false) @map("is_message_subscribed")
+  birthDate           DateTime? @map("birth_date") @db.Date
+  totalPoint          Int       @default(0) @map("total_point")
+
+  maker                       Maker?
+  accounts                    Account[]
+  sessions                    Session[]
+  deliveryInformations        DeliveryInformation[]
+  productOrders               ProductOrder[]
+  fleaMarketProducts          FleaMarketProduct[]          @relation("seller")
+  fleaMarketPurchasedProducts FleaMarketProduct[]          @relation("buyer")
+  sendedMessages              Message[]                    @relation("sender")
+  receivedMessages            Message[]                    @relation("receiver")
+  chatroomSender              FleaMarketChatRoom[]         @relation("sender")
+  chatroomReceiver            FleaMarketChatRoom[]         @relation("receiver")
+  productReviews              ProductReview[]
+  fleaMarketProductReviews    FleaMarketProductReview[]
+  fleaMarketProductComplaints FleaMarketProductComplaint[]
+  pointRecords                PointRecord[]
+  notifications               Notification[]
+  productLikes                ProductLike[]
+  fleaMarketProductLikes      FleaMarketProductLike[]
+  cartItems                   ShoppingCartItem[]
+
+  @@map("user")
+}
+
+model Account {
+  id                       String  @id @default(cuid())
+  userId                   String  @map("user_id")
+  type                     String
+  provider                 String
+  providerAccountId        String  @map("provider_account_id")
+  refresh_token            String?
+  access_token             String?
+  expires_at               Int?
+  refresh_token_expires_in Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?
+  session_state            String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("account")
+}
+
+model ProductLike {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId    String @map("user_id")
+  productId String @map("product_id")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@index([userId])
+  @@map("product_like")
+}
+
+model FleaMarketProductLike {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId              String @map("user_id")
+  fleaMarketProductId String @map("flea_market_product_id")
+
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fleaMarketProduct FleaMarketProduct @relation(fields: [fleaMarketProductId], references: [id], onDelete: Cascade)
+
+  @@map("flea_market_product_like")
+}
+
+model ShoppingCartItem {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId          String @map("user_id")
+  productOptionId String @map("product_option_id")
+  quantity        Int
+
+  user   User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  option ProductOption @relation(fields: [productOptionId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productOptionId])
+  @@index([userId])
+  @@index([productOptionId])
+  @@map("shopping_cart_item")
+}
+
+model DeliveryInformation {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId String @map("user_id")
+
+  addressLabel  String  @map("address_label")
+  addressee     String
+  phoneNumber   String  @map("phone_number")
+  postalCode    String  @map("postal_code")
+  address       String
+  detailAddress String  @map("detail_address")
+  isPrimary     Boolean @default(false) @map("is_primary")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("delivery_information")
+}
+
+model ProductOrder {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId String @map("user_id")
+
+  addressLabel  String @map("address_label")
+  addressee     String
+  phoneNumber   String @map("phone_number")
+  postalCode    String @map("postal_code")
+  address       String
+  detailAddress String @map("detail_address")
+
+  orderNumber        String @unique @map("order_number")
+  title              String // 주문명
+  deliveryFee        Int    @default(3300) @map("delivery_fee") // 배송비
+  totalPrice         Int    @map("total_price") // 제품 총 금액
+  usedPoint          Int    @default(0) @map("used_point") // 사용한 포인트
+  totalPaymentAmount Int    @map("total_payment_amount") // 실제 결제 금액
+
+  deliveryNote  String?       @map("delivery_note")
+  paymentType   String        @map("payment_type")
+  paymentStatus PaymentStatus @default(PENDING) @map("payment_status")
+  receiptUrl    String        @map("receipt_url")
+
+  orderItems   ProductOrderItem[]
+  pointRecords PointRecord[]
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("product_order")
+}
+
+model ProductOrderItem {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderId         String @map("order_id")
+  productOptionId String @map("product_option_id")
+
+  quantity       Int
+  totalPrice     Int                 @map("total_price")
+  trackingNumber String              @default("") @map("tracking_number")
+  deliveryStatus OrderDeliveryStatus @map("order_status")
+
+  orderCancelRequest OrderCancelRequest?
+  productReview      ProductReview?
+
+  order              ProductOrder             @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  option             ProductOption            @relation(fields: [productOptionId], references: [id], onDelete: Cascade)
+  confirmationRecord OrderConfirmationRecord?
+
+  @@map("product_order_item")
+}
+
+model ProductReview {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId      String @map("user_id")
+  orderItemId String @unique @map("order_item_id")
+  productId   String @map("product_id")
+
+  content      String
+  reviewImages String[] @map("review_images")
+
+  user      User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  orderItem ProductOrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_review")
+}
+
+model OrderCancelRequest {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderItemId String @unique @map("order_item_id")
+
+  cancelReasonType OrderCancelReasonType @map("cancel_reason_type")
+  reason           String?
+
+  productOrderItem ProductOrderItem @relation(fields: [orderItemId], references: [id], onDelete: Cascade)
+
+  @@map("order_cancel_request")
+}
+
+model FleaMarketProductReview {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId              String @map("user_id")
+  fleaMarketProductId String @unique @map("flea_market_product_id")
+
+  score        Int // 1 ~ 5
+  content      String
+  reviewImages String[] @map("review_images")
+
+  user              User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fleaMarketProduct FleaMarketProduct @relation(fields: [fleaMarketProductId], references: [id], onDelete: Cascade)
+
+  @@map("flea_market_product_review")
+}

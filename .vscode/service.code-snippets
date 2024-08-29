@@ -1,0 +1,32 @@
+{
+  // 서비스 로직 생성
+  "create new service logic": {
+    "prefix": "cnsl",
+    "body": [
+      "import { db } from \"@core/models\";",
+      "",
+      "class $1Service {",
+      "  async $3() {",
+      "    const data = await db.$4.$5($6);",
+      "    return data.json();",
+      "  }",
+      "}",
+      "",
+      "export const $2Service = new $1Service();",
+      "",
+    ],
+    "description": "create new service logic",
+  },
+
+  // 서비스 로직 스니펫 생성
+  "create service logic snippet": {
+    "prefix": "csls",
+    "body": [
+      "  async $1() {",
+      "    const data = await db.$2.$3($4);",
+      "    return data.json();",
+      "  }",
+    ],
+    "description": "create service logic snippet",
+  },
+}

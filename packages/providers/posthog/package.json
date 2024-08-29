@@ -1,0 +1,14 @@
+{
+	"name": "@providers/posthog",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./src/index.ts",
+	"license": "MIT",
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18"
+	},
+	"dependencies": {
+		"posthog-js": "^1.139.2"
+	}
+}

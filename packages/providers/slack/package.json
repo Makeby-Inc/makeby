@@ -1,0 +1,13 @@
+{
+	"name": "@providers/slack",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./src/index.ts",
+	"license": "MIT",
+	"dependencies": {
+		"@slack/web-api": "^6.10.0"
+	},
+	"devDependencies": {
+		"@types/node": "^20"
+	}
+}

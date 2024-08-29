@@ -1,0 +1,95 @@
+enum UserRole {
+  USER
+  MAKER
+}
+
+enum SocialNetworkType {
+  X
+  INSTAGRAM
+  NAVER
+}
+
+enum MakerFileType {
+  PORTFOLIO
+  REFERENCE
+  BUSINESS_LICENSE
+}
+
+enum MakerRequestStatus {
+  PENDING
+  APPROVED
+}
+
+enum ProductStatus {
+  PENDING
+  REVIEWING
+  IN_PRODUCTION
+  RELEASED
+}
+
+enum PlanType {
+  BASIC
+  ESSENTIAL
+  PREMIUM
+}
+
+enum CalculationType {
+  ORDER_CONFIRMATION // 주문 확정
+  WITHDRAWAL_COMPLETE // 출금 완료
+  DEDUCTION // 선제작 공제 
+}
+
+enum ProductType {
+  MAKER
+  FLEA_MARKET
+}
+
+enum TradeType {
+  SELL
+  PURCHASE
+  EXCHANGE
+  FREE_SHARING
+}
+
+enum PaymentType {
+  CREDIT_CARD
+  NAVER_PAY
+  KAKAO_PAY
+  TOSS
+  VIRTUAL_ACCOUNT
+  INSTANT_BANK_TRANSFER
+}
+
+enum OrderDeliveryStatus {
+  PENDING
+  SENT // 이때 운송장번호 기입
+  CONFIRMED // 구매 확정
+  CANCELED
+  EXCHANGED
+  RETURNED
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  CANCELED
+}
+
+enum OrderCancelReasonType {
+  CHANGE_OF_MIND
+  ORDER_MISTAKE
+  CANCEL_AND_REORDER
+  SERVICE_COMPLAINT
+}
+
+enum FleaMarketProductStatus {
+  FOR_SALE
+  RESERVED
+  SOLD_OUT
+}
+
+enum MakerType {
+  INDIVIDUAL
+  INDIVIDUAL_BUSINESS
+  CORPORATE_BUSINESS
+}

@@ -1,0 +1,48 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@core/models':
+    specifier: workspace:^
+    version: link:../../packages/core/models
+  '@core/react':
+    specifier: workspace:*
+    version: link:../../packages/core/react
+  '@core/services':
+    specifier: workspace:*
+    version: link:../../packages/core/services
+  '@core/utils':
+    specifier: workspace:*
+    version: link:../../packages/core/utils
+  '@design-system/editor':
+    specifier: workspace:*
+    version: link:../../packages/design-system/editor
+  '@design-system/icon':
+    specifier: workspace:*
+    version: link:../../packages/design-system/icon
+  '@design-system/template':
+    specifier: workspace:*
+    version: link:../../packages/design-system/template
+  '@design-system/ui':
+    specifier: workspace:*
+    version: link:../../packages/design-system/ui
+  '@providers/auth':
+    specifier: workspace:*
+    version: link:../../packages/providers/auth
+
+devDependencies:
+  '@configs/eslint':
+    specifier: workspace:*
+    version: link:../../configs/eslint
+  '@configs/next':
+    specifier: workspace:*
+    version: link:../../configs/next
+  '@configs/tailwindcss':
+    specifier: workspace:*
+    version: link:../../configs/tailwindcss
+  '@configs/typescript':
+    specifier: workspace:*
+    version: link:../../configs/typescript

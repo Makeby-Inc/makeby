@@ -1,0 +1,28 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="80" height="80" fill="#F5F5F5"/>
+<g id="Home">
+<path d="M-740 -1255C-740 -1256.1 -739.105 -1257 -738 -1257H1868C1869.1 -1257 1870 -1256.1 1870 -1255V1049.73C1870 1050.83 1869.1 1051.73 1868 1051.73H-738C-739.105 1051.73 -740 1050.83 -740 1049.73V-1255Z" fill="#8571F8" fill-opacity="0.1"/>
+<path d="M-738 -1256H1868V-1258H-738V-1256ZM1869 -1255V1049.73H1871V-1255H1869ZM1868 1050.73H-738V1052.73H1868V1050.73ZM-739 1049.73V-1255H-741V1049.73H-739ZM-738 1050.73C-738.552 1050.73 -739 1050.28 -739 1049.73H-741C-741 1051.39 -739.657 1052.73 -738 1052.73V1050.73ZM1869 1049.73C1869 1050.28 1868.55 1050.73 1868 1050.73V1052.73C1869.66 1052.73 1871 1051.39 1871 1049.73H1869ZM1868 -1256C1868.55 -1256 1869 -1255.55 1869 -1255H1871C1871 -1256.66 1869.66 -1258 1868 -1258V-1256ZM-738 -1258C-739.657 -1258 -741 -1256.66 -741 -1255H-739C-739 -1255.55 -738.552 -1256 -738 -1256V-1258Z" fill="black" fill-opacity="0.1"/>
+</g>
+<g id="/" clip-path="url(#clip0_1300_583)">
+<rect width="1440" height="4468" transform="translate(-100 -844)" fill="white"/>
+<g id="Frame 3473">
+<g id="Frame 3479" clip-path="url(#clip1_1300_583)">
+<g id="Frame 3474">
+<rect width="1240" height="339.2" transform="translate(0 -128)" fill="white"/>
+<g id="Frame 5475">
+<path id="Vector 617" d="M53.3332 16.667L26.6665 40.0003L53.3332 63.3337" stroke="#171717" stroke-width="1.50537"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_1300_583">
+<rect width="1440" height="4468" fill="white" transform="translate(-100 -844)"/>
+</clipPath>
+<clipPath id="clip1_1300_583">
+<rect width="1240" height="391.2" fill="white" transform="translate(0 -180)"/>
+</clipPath>
+</defs>
+</svg>

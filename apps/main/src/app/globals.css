@@ -1,0 +1,119 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	:root {
+		--brand-50: 249 100% 99%;
+		--brand-100: 249 93% 94%;
+		--brand-200: 249 90% 88%;
+		--brand-300: 249 90% 84%;
+		--brand-400: 249 90% 77%;
+		--brand-500: 249 91% 71%;
+		--brand-600: 249 56% 60%;
+		--brand-700: 249 37% 50%;
+		--brand-800: 249 37% 35%;
+		--brand-900: 249 37% 28%;
+		--base-50: 0 0% 98%;
+		--base-100: 0 0% 96%;
+		--base-200: 0 0% 90%;
+		--base-300: 0 0% 84%;
+		--base-400: 0 0% 64%;
+		--base-500: 0 0% 45%;
+		--base-600: 0 0% 32%;
+		--base-700: 0 0% 25%;
+		--base-800: 0 0% 15%;
+		--base-900: 0 0% 9%;
+		--base-white: 0 0% 100%;
+		--base-black: 0 0% 0%;
+		--rose-400: 350 89% 60%;
+		--rose-500: 350 89% 68%;
+		--rose-600: 350 59% 48%;
+		--yellow-500: 45 93% 47%;
+		--lime-500: 84 81% 44%;
+		--blue-500: 217 91% 60%;
+		--input-lg: 16px;
+		--input-md: 12px;
+		--button-lg: 16px;
+		--button-md: 12px;
+		--button-sm: 8px;
+		--element-xl: 24px;
+		--element-lg: 16px;
+		--element-md: 12px;
+		--element-sm: 8px;
+		--element-xs: 4px;
+
+		--background: var(--base-white);
+		--foreground: var(--base-900);
+		--hover: var(--base-50);
+		--primary: var(--brand-500);
+		--primary-foreground: var(--base-white);
+		--primary-hover: var(--brand-600);
+		--secondary: var(--base-50);
+		--secondary-foreground: var(--base-500);
+		--secondary-hover: var(--base-100);
+		--muted: var(--base-100);
+		--muted-foreground: var(--base-300);
+		--destructive: var(--rose-500);
+		--destructive-foreground: var(--base-white);
+		--destructive-hover: var(--rose-600);
+		--border: var(--base-100);
+		--strong: var(--base-200);
+		--negative: var(--rose-500);
+		--cautionary: var(--yellow-500);
+		--positive: var(--lime-500);
+		--informative: var(--blue-500);
+	}
+
+	.dark {
+		--background: var(--base-900);
+		--foreground: var(--base-100);
+		--hover: var(--base-800);
+		--primary: var(--brand-400);
+		--primary-foreground: var(--base-900);
+		--primary-hover: var(--brand-500);
+		--secondary: var(--base-800);
+		--secondary-foreground: var(--base-400);
+		--secondary-hover: var(--base-700);
+		--muted: var(--base-700);
+		--muted-foreground: var(--base-500);
+		--destructive: var(--rose-400);
+		--destructive-foreground: var(--base-900);
+		--destructive-hover: var(--rose-500);
+		--border: var(--base-100);
+		--strong: var(--base-200);
+		--negative: var(--rose-500);
+		--cautionary: var(--yellow-500);
+		--positive: var(--lime-500);
+		--informative: var(--blue-500);
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+		font-feature-settings: 'ss05';
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+	section {
+		@apply max-w-screen-pc max-pc:max-w-[500px] mx-auto px-4;
+	}
+}
+
+/* Color for skeleton */
+@layer base {
+	:root {
+		--skeleton: 0 0% 96%;
+		--skeleton-foreground: 0 0% 100%;
+	}
+	.dark {
+		--skeleton: 0 0% 20%;
+		--skeleton-foreground: 0 0% 13%;
+	}
+}

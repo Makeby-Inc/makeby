@@ -1,0 +1,31 @@
+{
+	"name": "@design-system/template",
+	"version": "0.0.1",
+	"description": "",
+	"main": "./src/index.ts",
+	"types": "./src/index.ts",
+	"license": "MIT",
+	"scripts": {
+		"clean": "rm -rf .turbo && rm -rf dist"
+	},
+	"dependencies": {
+		"class-variance-authority": "^0.7.0",
+		"next": "14.0.2",
+		"react": "^18"
+	},
+	"devDependencies": {
+		"@design-system/icon": "workspace:*",
+		"@design-system/ui": "workspace:*",
+		"@core/utils": "workspace:*",
+		"@configs/typescript": "workspace:*",
+		"@configs/tailwindcss": "workspace:*",
+		"@providers/supabase": "workspace:*",
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"typescript": "^5",
+		"tsup": "^6.0.1",
+		"tailwindcss": "latest",
+		"autoprefixer": "^10.4.13",
+		"postcss": "^8.4.20"
+	}
+}

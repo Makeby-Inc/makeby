@@ -1,0 +1,13 @@
+{
+	"name": "@configs/tailwindcss",
+	"version": "0.0.0",
+	"private": true,
+	"main": "index.ts",
+	"types": "index.ts",
+	"devDependencies": {
+		"tailwindcss": "latest"
+	},
+	"dependencies": {
+		"tailwindcss-animate": "^1.0.7"
+	}
+}

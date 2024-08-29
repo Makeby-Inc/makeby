@@ -1,0 +1,50 @@
+{
+	"eslint.workingDirectories": [
+		{
+			"mode": "auto"
+		}
+	],
+	"tailwindCSS.classAttributes": [
+		"class",
+		"className",
+		"classNames",
+		"ngClass",
+		".*Class"
+	],
+	"tailwindCSS.experimental.classRegex": [
+		[
+			"cva\\(([^)(]*(?:\\([^)(]*(?:\\([^)(]*(?:\\([^)(]*\\)[^)(]*)*\\)[^)(]*)*\\)[^)(]*)*)\\)",
+			"\"(.*?)\""
+		],
+		["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+	],
+	"files.associations": {
+		"*.css": "tailwindcss"
+	},
+	"editor.quickSuggestions": {
+		"strings": "on"
+	},
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.tabSize": 2,
+	"editor.formatOnSave": true,
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "always",
+		"source.fixAll.prettier": "always"
+	},
+	"[prisma]": {
+		"editor.defaultFormatter": "Prisma.prisma"
+	},
+	"exportall.config.exclude": [".config.", ".d.", "dist"],
+	"exportall.config.semis": false,
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"cSpell.words": [
+		"kakao",
+		"naver",
+		"supabase",
+		"inngest",
+		"signup",
+		"soldout",
+		"fleamarket"
+	]
+}

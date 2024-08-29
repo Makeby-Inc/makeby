@@ -1,0 +1,36 @@
+name: Check lint, prettier after push CI
+
+on:
+ pull_request:
+  branches: ['main']
+
+jobs:
+ build:
+  runs-on: ubuntu-latest
+
+  strategy:
+   matrix:
+    node-version: [20.x]
+
+  steps:
+   - uses: actions/checkout@v4.1.7
+
+   - name: 📥 Download pnpm
+     uses: pnpm/action-setup@v4
+     with:
+      version: 8.6.10
+
+   - name: ⏯️ Use Node.js ${{ matrix.node-version }}
+     uses: actions/setup-node@v4.0.2
+     with:
+      node-version: ${{ matrix.node-version }}
+      cache: 'pnpm'
+
+   - name: 🔧 Install the project dependencies
+     run: pnpm install
+
+   - name: ✅ Lint check
+     run: pnpm run lint
+
+   - name: ✅ Prettier check
+     run: pnpm run format:check

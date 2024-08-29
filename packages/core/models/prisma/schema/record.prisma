@@ -1,0 +1,85 @@
+// 메이커 정산 내역
+model MakerCalculationRecord {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  makerId String @map("maker_id")
+
+  type              CalculationType
+  title             String
+  titleTooltip      String?         @map("title_tooltip")
+  amount            Int
+  amountTooltip     String?         @map("amount_tooltip")
+  accumulatedAmount Int             @map("accumulated_amount")
+
+  maker                   Maker                    @relation(fields: [makerId], references: [id])
+  orderConfirmationRecord OrderConfirmationRecord?
+  withdrawalRecord        MakerWithdrawalRecord?
+
+  @@map("maker_calculation_record")
+}
+
+// 메이커 출금 신청 기록
+model MakerWithdrawalRecord {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  calculationRecordId String    @unique @map("calculation_record_id")
+  expectedDepositDate DateTime? @map("expected_deposit_date") @db.Date
+  depositAmount       Int       @map("deposit_amount")
+
+  makerCalculationRecord MakerCalculationRecord @relation(fields: [calculationRecordId], references: [id])
+
+  @@map("maker_withdrawal_record")
+}
+
+model OrderConfirmationRecord {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  productOrderItemId       String @unique @map("product_order_item_id")
+  makerCalculationRecordId String @unique @map("maker_calculation_record_id")
+
+  makerCalculationRecord MakerCalculationRecord @relation(fields: [makerCalculationRecordId], references: [id])
+  orderItem              ProductOrderItem       @relation(fields: [productOrderItemId], references: [id])
+
+  @@map("order_confirmation_record")
+}
+
+model PointRecord {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId  String @map("user_id")
+  orderId String @map("order_id")
+
+  isUsed      Boolean @map("is_used")
+  pointAmount Int     @map("point_amount")
+
+  user         User         @relation(fields: [userId], references: [id])
+  productOrder ProductOrder @relation(fields: [orderId], references: [id])
+
+  @@map("point_record")
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  userId String @map("user_id")
+
+  notificationType String  @map("notification_type")
+  content          String
+  isRead           Boolean @default(false) @map("is_read")
+  link             String?
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@map("notification")
+}

@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.tiptap {
+  @apply space-y-3;
+}
+
+.typo h1 {
+  @apply text-5xl font-bold;
+}
+
+.typo h2 {
+  @apply text-3xl font-bold;
+}
+.typo h3 {
+  @apply text-2xl font-bold;
+}
+.typo h4 {
+  @apply text-xl font-bold;
+}
+
+.typo blockquote {
+  @apply border-l-2 border-gray-200 pl-6;
+}
+.typo pre {
+  @apply inline-block rounded-lg bg-gray-100 p-2 text-sm font-medium;
+}
+.typo ul li {
+  @apply list-inside list-disc;
+}
+.typo ol li {
+  @apply list-inside list-decimal;
+}
+.typo li p {
+  @apply inline;
+}
+.typo a {
+  @apply text-blue-500 underline;
+}

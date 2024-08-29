@@ -1,0 +1,94 @@
+model LandingCarouselImage {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int     @default(autoincrement()) @map("order_index")
+  imageUrl   String  @map("image_url")
+  link       String?
+
+  @@map("landing_carousel_image")
+}
+
+model PopularMaker {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int    @default(autoincrement()) @map("order_index")
+  makerId    String @unique @map("maker_id")
+
+  maker Maker @relation(fields: [makerId], references: [id])
+
+  @@map("popular_maker")
+}
+
+model RecommendedProduct {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int    @default(autoincrement()) @map("order_index")
+  productId  String @unique @map("product_id")
+
+  product Product @relation(fields: [productId], references: [id])
+
+  @@map("recommended_product")
+}
+
+model ProductCategory {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int    @default(autoincrement()) @map("order_index")
+  name       String
+  slug       String @unique
+
+  products           Product[]
+  fleaMarketProducts FleaMarketProduct[]
+
+  @@map("product_category")
+}
+
+model FaqCategory {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int    @default(autoincrement()) @map("order_index")
+  name       String
+  slug       String @unique
+
+  faqs Faq[]
+
+  @@map("faq_category")
+}
+
+model Faq {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  categoryId Int @map("category_id")
+
+  orderIndex  Int    @default(autoincrement()) @map("order_index")
+  title       String
+  description String
+
+  faqCategory FaqCategory @relation(fields: [categoryId], references: [id])
+
+  @@map("faq")
+}
+
+model Notice {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt DateTime @default(now()) @updatedAt @map("updated_at") @db.Timestamptz(6)
+
+  orderIndex Int    @default(autoincrement()) @map("order_index")
+  title      String
+  content    String
+
+  @@map("notice")
+}

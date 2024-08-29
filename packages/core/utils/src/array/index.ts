@@ -1,0 +1,6 @@
+export * from './arrayInclude'
+export * from './chunk'
+export * from './isDifferentArray'
+export * from './isNonEmptyArray'
+export * from './lastElement'
+export * from './nonEmptyArray'

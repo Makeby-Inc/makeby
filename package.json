@@ -1,0 +1,47 @@
+{
+	"version": "1.0.0",
+	"private": true,
+	"prisma": {
+		"schema": "packages/core/models/prisma/schema"
+	},
+	"workspaces": [
+		"apps/**/**",
+		"configs/**/**",
+		"packages/*",
+		"packages/**/**"
+	],
+	"scripts": {
+		"postinstall": "npx prisma generate",
+		"generate": "dotenv -- turbo run generate",
+		"db:migrate": "dotenv -- turbo run db:migrate",
+		"db:push": "dotenv -- turbo run db:push",
+		"db:pull": "dotenv -- turbo run db:pull",
+		"db:studio": "dotenv --  run db:studio",
+		"build": "dotenv -- turbo run build",
+		"dev": "dotenv -- turbo run dev --concurrency=20",
+		"lint": "turbo run lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md,js,json}\"",
+		"format:check": "prettier --check \"**/*.{ts,tsx,md}\"",
+		"clean": "rm -rf node_modules .next .turbo && find . -name 'node_modules' -type d -exec rm -rf {} + && find . -name '.next' -type d -exec rm -rf {} + && find . -name '.turbo' -type d -exec rm -rf {} +"
+	},
+	"devDependencies": {
+		"@configs/prettier": "workspace:*",
+		"@configs/tailwindcss": "workspace:*",
+		"@configs/typescript": "workspace:*",
+		"eslint": "^8.48.0",
+		"prettier": "^3.0.3",
+		"prettier-plugin-tailwindcss": "^0.5.3",
+		"turbo": "^2.0.3",
+		"typescript": "^5.4.5"
+	},
+	"packageManager": "pnpm@8.6.10",
+	"name": "op_makeby",
+	"dependencies": {
+		"dotenv-cli": "^7.3.0"
+	},
+	"pnpm": {
+		"overrides": {
+			"oauth4webapi": "npm:@jacobkim/oauth4webapi@^2.10.4"
+		}
+	}
+}

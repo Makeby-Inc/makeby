@@ -1,0 +1,7 @@
+{
+	"extends": "@configs/typescript/base.json",
+	"compilerOptions": {
+		"lib": ["dom", "dom.iterable", "ESNext", "ESNext.AsyncIterable"],
+		"target": "ES2015"
+	}
+}

@@ -1,0 +1,39 @@
+{
+	"name": "docs",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"storybook": "storybook dev -p 6006 public",
+		"serve-storybook": "serve storybook-static",
+		"clean": "rm -rf storybook-static && rm -rf .turbo"
+	},
+	"dependencies": {
+		"@design-system/icon": "workspace:*",
+		"@design-system/template": "workspace:*",
+		"@design-system/ui": "workspace:*",
+		"@storybook/test": "^8.1.10"
+	},
+	"devDependencies": {
+		"@chromatic-com/storybook": "^1",
+		"@configs/tailwindcss": "workspace:*",
+		"@configs/typescript": "workspace:*",
+		"@storybook/addon-essentials": "^8.1.10",
+		"@storybook/addon-interactions": "^8.1.10",
+		"@storybook/addon-links": "^8.1.10",
+		"@storybook/blocks": "^8.1.10",
+		"@storybook/nextjs": "^8.1.10",
+		"@storybook/react": "^8.1.10",
+		"@types/react": "^18.2.5",
+		"@types/react-dom": "^18.2.3",
+		"autoprefixer": "^10.4.16",
+		"postcss": "^8.4.31",
+		"prop-types": "^15.8.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"storybook": "^8.1.10",
+		"tailwindcss": "^3.3.5",
+		"typescript": "^5.2.2"
+	}
+}

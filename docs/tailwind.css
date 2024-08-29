@@ -1,0 +1,98 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable-dynamic-subset.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-50: 216 100% 98%;
+    --brand-100: 217 90% 92%;
+    --brand-200: 217 90% 84%;
+    --brand-300: 217 91% 78%;
+    --brand-400: 217 91% 68%;
+    --brand-500: 217 91% 60%;
+    --brand-600: 217 63% 51%;
+    --brand-700: 217 61% 42%;
+    --brand-800: 217 61% 30%;
+    --brand-900: 217 61% 24%;
+    --base-50: 240 9% 98%;
+    --base-100: 210 9% 96%;
+    --base-200: 210 8% 90%;
+    --base-300: 220 7% 84%;
+    --base-400: 222 7% 65%;
+    --base-500: 220 9% 46%;
+    --base-600: 220 9% 33%;
+    --base-700: 220 9% 26%;
+    --base-800: 217 10% 16%;
+    --base-900: 216 11% 9%;
+    --base-white: 0 0% 100%;
+    --base-black: 0 0% 0%;
+    --rose-400: 350 89% 60%;
+    --rose-500: 350 89% 68%;
+    --rose-600: 350 59% 48%;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    --background: var(--base-white);
+    --foreground: var(--base-900);
+    --hover: var(--base-50);
+    --primary: var(--brand-500);
+    --primary-foreground: var(--base-white);
+    --primary-hover: var(--brand-600);
+    --secondary: var(--base-50);
+    --secondary-foreground: var(--base-500);
+    --secondary-hover: var(--base-100);
+    --muted: var(--base-100);
+    --muted-foreground: var(--base-300);
+    --destructive: var(--rose-500);
+    --destructive-foreground: var(--base-white);
+    --destructive-hover: var(--rose-600);
+    --border: var(--base-100);
+    --input: var(--base-200);
+  }
+
+  .dark {
+    --background: var(--base-900);
+    --foreground: var(--base-100);
+    --hover: var(--base-800);
+    --primary: var(--brand-400);
+    --primary-foreground: var(--base-900);
+    --primary-hover: var(--brand-500);
+    --secondary: var(--base-800);
+    --secondary-foreground: var(--base-400);
+    --secondary-hover: var(--base-700);
+    --muted: var(--base-700);
+    --muted-foreground: var(--base-500);
+    --destructive: var(--rose-400);
+    --destructive-foreground: var(--base-900);
+    --destructive-hover: var(--rose-500);
+    --border: var(--base-800);
+    --input: var(--base-700);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  section {
+    @apply max-w-screen-pc mx-auto;
+  }
+}
+
+/* Color for skeleton */
+@layer base {
+  :root {
+    --skeleton: 0 0% 96%;
+    --skeleton-foreground: 0 0% 100%;
+  }
+  .dark {
+    --skeleton: 0 0% 20%;
+    --skeleton-foreground: 0 0% 13%;
+  }
+}

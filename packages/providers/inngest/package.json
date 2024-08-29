@@ -1,0 +1,10 @@
+{
+	"name": "@providers/inngest",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./src/index.ts",
+	"license": "MIT",
+	"dependencies": {
+		"inngest": "^3.19.13"
+	}
+}

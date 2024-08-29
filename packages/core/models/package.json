@@ -1,0 +1,12 @@
+{
+	"name": "@core/models",
+	"version": "1.0.0",
+	"private": true,
+	"main": "./src/index.ts",
+	"license": "MIT",
+	"dependencies": {
+		"@configs/typescript": "workspace:*",
+		"@prisma/client": "^5.15.0",
+		"prisma": "^5.15.0"
+	}
+}

@@ -1,0 +1,44 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"globalDependencies": ["**/.env.*local"],
+	"globalEnv": [
+		"NODE_ENV",
+		"DATABASE_URL",
+		"VERCEL_URL",
+		"AUTH_SECRET",
+		"NEXT_PUBLIC_SUPABASE_URL",
+		"NEXT_PUBLIC_SUPABASE_ANON_KEY",
+		"NEXT_PUBLIC_BOOTPAY_APPLICATION_ID",
+		"AUTH_GOOGLE_ID",
+		"AUTH_GOOGLE_SECRET",
+		"AUTH_KAKAO_ID",
+		"AUTH_KAKAO_SECRET",
+		"AUTH_NAVER_ID",
+		"AUTH_NAVER_SECRET",
+		"NEXT_PUBLIC_BOOTPAY_APPLICATION_ID"
+	],
+	"tasks": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": [".next/**", "!.next/cache/**", "storybook-static"]
+		},
+		"generate": {
+			"cache": false
+		},
+		"db:migrate": {
+			"cache": false
+		},
+		"db:push": {
+			"cache": false
+		},
+		"db:pull": {
+			"cache": false
+		},
+		"lint": {},
+		"dev": {
+			"cache": false,
+			"persistent": true
+		},
+		"storybook": {}
+	}
+}
